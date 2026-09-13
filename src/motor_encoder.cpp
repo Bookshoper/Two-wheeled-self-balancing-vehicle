@@ -71,6 +71,7 @@ void setMotorSpeed(int leftPwm, int rightPwm) {
 void getEncoderSpeed(int16_t &leftCount, int16_t &rightCount) {
     pcnt_get_counter_value(PCNT_UNIT_0, &leftCount);
     pcnt_get_counter_value(PCNT_UNIT_1, &rightCount);
+    rightCount = -rightCount;  // 修正极性，使前进时两侧同号
     pcnt_counter_clear(PCNT_UNIT_0);
     pcnt_counter_clear(PCNT_UNIT_1);
 }
